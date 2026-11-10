@@ -1,0 +1,41 @@
+spring:
+  application:
+    name: orders-api
+  
+  datasource:
+    url: jdbc:postgresql://localhost:5432/orders_db
+    username: ${DB_USERNAME:orders_user}
+    password: ${DB_PASSWORD:orders_password}
+    driver-class-name: org.postgresql.Driver
+    
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+    
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+    baseline-on-migrate: true
+
+server:
+  port: 8080
+  servlet:
+    context-path: /api
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+
+aws:
+  region: ${AWS_REGION:us-east-1}
+  sqs:
+    order-events-queue: ${AWS_SQS_ORDER_EVENTS_QUEUE:order-events-queue}
+  dynamodb:
+    orders-table: ${AWS_DYNAMODB_ORDERS_TABLE:orders}

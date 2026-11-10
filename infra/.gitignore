@@ -1,0 +1,40 @@
+# Terraform local state and logs
+*.tfstate
+*.tfstate.*
+*.tfvars
+*.tfvars.json
+crash.log
+crash.*.log
+*.log
+
+# Terraform directory
+.terraform/
+.terraform.lock.hcl
+*.lock
+*.lock.*
+
+# Sensitive variable overrides (never commit real credentials)
+*_override.tf
+*_override.tf.json
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Backup files
+*.bak
+*.backup
+
+# Environment specific files (use .tfvars files in environments/ instead)
+# These patterns ensure secrets are not accidentally committed
+env-secret.tfvars
+*secret*.tfvars
+*password*.tfvars
+*credential*.tfvars
